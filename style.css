@@ -1,0 +1,35 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 500px;
+    flex: 5 1 0;
+    font-size: large;
+}
+
+#play {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 5 1 0;
+    justify-content: space-evenly;
+}
+
+#numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex: 3 3 0;
+    font-size: large;
+    flex-wrap: wrap;
+}
+
+.number {
+    font-size: large;
+    width: 150px;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column;
+}
