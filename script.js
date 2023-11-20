@@ -1,5 +1,4 @@
 
-
 function add(a, b) {
 	return a+b;
 };
@@ -29,14 +28,20 @@ function operate(firstNumber, operator, secondNumber) {
     else if (operator === "/") {
         return divide(firstNumber, secondNumber);
     }
-}
+};
 
 const numberButton = document.querySelectorAll(".number");
+const clearDisplay = document.querySelector(".clear");
+const display = document.querySelector('#display')
+clearDisplay.addEventListener("click", () => {
+    display.innerText = ""
+})
 console.log(numberButton);
-for (let i = 0; i<numberButton.length; i++) {
-    numberButton[i].addEventListener("click", () => {
-        let buttonContent = numberButton.textContent;
-        let displayValue = document.querySelector("#display").innerText = buttonContent;
+
+numberButton.forEach((element) => {
+    let buttonContent = element.textContent;
+    element.addEventListener("click", () => {
+        let displayValue = document.querySelector("#display").innerText += buttonContent;
         return(displayValue);
     })
-}
+});
