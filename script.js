@@ -60,15 +60,23 @@ numberButton.forEach((element) => {
 
 operators.forEach((element) => {
     element.addEventListener('click', () => {
-    firstNumber = Number(display.textContent);
-    operator = element.textContent;
-    console.log(firstNumber);
-})
+        if (firstNumber !== null) {
+            secondNumber = display.textContent;
+            display.innerText = operate(firstNumber, operator, secondNumber);
+        };
+        firstNumber = Number(display.textContent);
+        secondNumber = null;
+        operator = element.textContent;
+        console.log(firstNumber);
+    })
 });
 
 equal.addEventListener("click", () => {
     secondNumber = Number(display.textContent);
-    if (secondNumber === 0 && operator === "/") {
+    if (firstNumber === null) {
+        display.innerText = "Please insert at least one other number";
+    }
+    else if (secondNumber === 0 && operator === "/") {
         display.innerText = "You divided by 0, no do!";
         result = display.textContent;
     }
