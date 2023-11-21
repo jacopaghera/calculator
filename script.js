@@ -36,6 +36,7 @@ const display = document.querySelector('#display');
 const operators = document.querySelectorAll(".op");
 const equal = document.querySelector(".equal");
 let firstNumber; let operator; let secondNumber; let result;
+console.log(firstNumber);
 
 clearDisplay.addEventListener("click", () => {
     display.innerText = "";
@@ -60,12 +61,12 @@ numberButton.forEach((element) => {
 
 operators.forEach((element) => {
     element.addEventListener('click', () => {
-        if (firstNumber !== null) {
-            secondNumber = display.textContent;
+        if (firstNumber !== undefined) {
+            secondNumber = Number(display.textContent);
             display.innerText = operate(firstNumber, operator, secondNumber);
         };
         firstNumber = Number(display.textContent);
-        secondNumber = null;
+        secondNumber = undefined;
         operator = element.textContent;
         console.log(firstNumber);
     })
@@ -73,7 +74,7 @@ operators.forEach((element) => {
 
 equal.addEventListener("click", () => {
     secondNumber = Number(display.textContent);
-    if (firstNumber === null) {
+    if (firstNumber === undefined) {
         display.innerText = "Please insert at least one other number";
     }
     else if (secondNumber === 0 && operator === "/") {
@@ -83,8 +84,8 @@ equal.addEventListener("click", () => {
     else {
         display.innerText = operate(firstNumber, operator, secondNumber);
         result = display.textContent;
-        firstNumber = null;
-        operator = null;
-        secondNumber = null;
+        firstNumber = undefined;
+        operator = undefined;
+        secondNumber = undefined;
     }
 })
