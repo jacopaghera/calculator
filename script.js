@@ -101,3 +101,9 @@ del.addEventListener("click", () => {
         display.innerText = newNumber;
     }
 })
+
+document.addEventListener("keypress", function(event) {
+    if (event.keyCode == 13) {
+      alert('hi.');
+    }
+  });
