@@ -36,43 +36,38 @@ const display = document.querySelector('#display');
 const operators = document.querySelectorAll(".op");
 const equal = document.querySelector(".equal");
 const del = document.querySelector(".delete");
-let firstNumber; let operator; let secondNumber; let result;
+let firstNumber; let operator; 
+let secondNumber; let result; let buttonContent;
 
-clearDisplay.addEventListener("click", () => {
+function clearDisp() {
     display.innerText = "";
     firstNumber = undefined;
     operator = undefined;
     secondNumber = undefined;
-});
+};
 
-numberButton.forEach((element) => {
-    let buttonContent = element.textContent;
-    element.addEventListener("click", () => {
-        if (display.textContent === result || display.textContent === `${firstNumber}`) {
-            display.innerText = buttonContent;
-        }
-        else if (buttonContent === "." && display.textContent.indexOf(".") > -1) {
-            //do nothing
-        }
-        else {
-            display.innerText += buttonContent;
-        }
-    })
-});
+function clickOperatorButton() {
+    if (firstNumber !== undefined) {
+        secondNumber = Number(display.textContent);
+        display.innerText = operate(firstNumber, operator, secondNumber);
+    };
+    firstNumber = Number(display.textContent);
+    secondNumber = undefined;
+}
 
-operators.forEach((element) => {
-    element.addEventListener('click', () => {
-        if (firstNumber !== undefined) {
-            secondNumber = Number(display.textContent);
-            display.innerText = operate(firstNumber, operator, secondNumber);
-        };
-        firstNumber = Number(display.textContent);
-        secondNumber = undefined;
-        operator = element.textContent;
-    })
-});
+function clickNumberButton() {
+    if (display.textContent === result || display.textContent === `${firstNumber}`) {
+        display.innerText = buttonContent;
+    }
+    else if (buttonContent === "." && display.textContent.indexOf(".") > -1) {
+        //do nothing
+    }
+    else {
+        display.innerText += buttonContent;
+    }
+};
 
-equal.addEventListener("click", () => {
+function clickEqualButton() {
     secondNumber = Number(display.textContent);
     if (firstNumber === undefined) {
         display.innerText = "Please insert at least one other number";
@@ -89,9 +84,9 @@ equal.addEventListener("click", () => {
         operator = undefined;
         secondNumber = undefined;
     }
-})
+};
 
-del.addEventListener("click", () => {
+function clickDeleteButton() {
     if (display.innerText === `${firstNumber}` || display.innerText === result) {
         //do nothing
     }
@@ -100,10 +95,30 @@ del.addEventListener("click", () => {
         let newNumber = displayedNumber.slice(0, displayedNumber.length-1);
         display.innerText = newNumber;
     }
+}
+
+clearDisplay.addEventListener("click", () => {
+   clearDisp();
+});
+
+numberButton.forEach((element) => {
+    buttonContent = element.textContent;
+    element.addEventListener("click", () => {
+        clickNumberButton();
+    })
+});
+
+operators.forEach((element) => {
+    element.addEventListener('click', () => {
+        clickOperatorButton();
+        operator = element.textContent;
+    })
+});
+
+equal.addEventListener("click", () => {
+    clickEqualButton();
 })
 
-document.addEventListener("keypress", function(event) {
-    if (event.keyCode == 13) {
-      alert('hi.');
-    }
-  });
+del.addEventListener("click", () => {
+   clickDeleteButton();
+});
