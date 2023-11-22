@@ -36,16 +36,13 @@ const display = document.querySelector('#display');
 const operators = document.querySelectorAll(".op");
 const equal = document.querySelector(".equal");
 let firstNumber; let operator; let secondNumber; let result;
-console.log(firstNumber);
 
 clearDisplay.addEventListener("click", () => {
     display.innerText = "";
-    firstNumber = null;
-    operator = null;
-    secondNumber = null;
+    firstNumber = undefined;
+    operator = undefined;
+    secondNumber = undefined;
 });
-
-console.log(numberButton);
 
 numberButton.forEach((element) => {
     let buttonContent = element.textContent;
@@ -68,7 +65,6 @@ operators.forEach((element) => {
         firstNumber = Number(display.textContent);
         secondNumber = undefined;
         operator = element.textContent;
-        console.log(firstNumber);
     })
 });
 
