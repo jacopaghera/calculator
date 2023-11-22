@@ -48,8 +48,11 @@ clearDisplay.addEventListener("click", () => {
 numberButton.forEach((element) => {
     let buttonContent = element.textContent;
     element.addEventListener("click", () => {
-        if (display.innerText === result || display.innerText === `${firstNumber}`) {
+        if (display.textContent === result || display.textContent === `${firstNumber}`) {
             display.innerText = buttonContent;
+        }
+        else if (buttonContent === "." && display.textContent.indexOf(".") > -1) {
+            //do nothing
         }
         else {
             display.innerText += buttonContent;
