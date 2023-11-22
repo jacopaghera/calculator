@@ -76,13 +76,14 @@ equal.addEventListener("click", () => {
     secondNumber = Number(display.textContent);
     if (firstNumber === undefined) {
         display.innerText = "Please insert at least one other number";
+        result = display.textContent;
     }
     else if (secondNumber === 0 && operator === "/") {
         display.innerText = "You divided by 0, no do!";
         result = display.textContent;
     }
     else {
-        display.innerText = operate(firstNumber, operator, secondNumber);
+        display.innerText = Number((operate(firstNumber, operator, secondNumber)).toFixed(3));
         result = display.textContent;
         firstNumber = undefined;
         operator = undefined;
