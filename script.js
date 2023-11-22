@@ -35,6 +35,7 @@ const clearDisplay = document.querySelector(".clear");
 const display = document.querySelector('#display');
 const operators = document.querySelectorAll(".op");
 const equal = document.querySelector(".equal");
+const del = document.querySelector(".delete");
 let firstNumber; let operator; let secondNumber; let result;
 
 clearDisplay.addEventListener("click", () => {
@@ -84,5 +85,16 @@ equal.addEventListener("click", () => {
         firstNumber = undefined;
         operator = undefined;
         secondNumber = undefined;
+    }
+})
+
+del.addEventListener("click", () => {
+    if (display.innerText === `${firstNumber}` || display.innerText === result) {
+        //do nothing
+    }
+    else {
+        let displayedNumber = display.textContent;
+        let newNumber = displayedNumber.slice(0, displayedNumber.length-1);
+        display.innerText = newNumber;
     }
 })

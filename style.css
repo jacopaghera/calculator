@@ -1,3 +1,7 @@
+html {
+    background-color: grey;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -17,7 +21,8 @@
     background-color: black;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 30px;
+    font-size: medium;
+    height: 45px;
     margin: 10px;
     padding: 5px;
 }
@@ -44,6 +49,8 @@
     width: 50px;
     height: 50px;
     margin: 1px;
+    background-color: aquamarine;
+    border-radius: 15px;
 }
 
 #operators {
@@ -52,7 +59,15 @@
     font-size: large;
 }
 
-.op, .equal, .clear {
+#controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.op, .equal, .clear, .delete {
     width: 50px;
-    height: 35px;
+    font-size: medium;
+    height: 41px;
+    background-color: bisque;
+    border-radius: 15px;
 }
