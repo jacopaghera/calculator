@@ -36,26 +36,16 @@ const display = document.querySelector('#display');
 const operators = document.querySelectorAll(".op");
 const equal = document.querySelector(".equal");
 const del = document.querySelector(".delete");
-let firstNumber; let operator; 
-let secondNumber; let result; let buttonContent;
+let firstNumber; let operator; let secondNumber; let result;
 
 function clearDisp() {
     display.innerText = "";
     firstNumber = undefined;
     operator = undefined;
     secondNumber = undefined;
-};
-
-function clickOperatorButton() {
-    if (firstNumber !== undefined) {
-        secondNumber = Number(display.textContent);
-        display.innerText = operate(firstNumber, operator, secondNumber);
-    };
-    firstNumber = Number(display.textContent);
-    secondNumber = undefined;
 }
 
-function clickNumberButton() {
+function clickNumberButton(buttonContent) {
     if (display.textContent === result || display.textContent === `${firstNumber}`) {
         display.innerText = buttonContent;
     }
@@ -65,9 +55,19 @@ function clickNumberButton() {
     else {
         display.innerText += buttonContent;
     }
-};
+}
 
-function clickEqualButton() {
+function clickOperators(op) {
+    if (firstNumber !== undefined) {
+        secondNumber = Number(display.textContent);
+        display.innerText = operate(firstNumber, operator, secondNumber);
+    };
+    firstNumber = Number(display.textContent);
+    secondNumber = undefined;
+    operator = op;
+}
+
+function clickEqual() {
     secondNumber = Number(display.textContent);
     if (firstNumber === undefined) {
         display.innerText = "Please insert at least one other number";
@@ -84,9 +84,9 @@ function clickEqualButton() {
         operator = undefined;
         secondNumber = undefined;
     }
-};
+}
 
-function clickDeleteButton() {
+function clickDel() {
     if (display.innerText === `${firstNumber}` || display.innerText === result) {
         //do nothing
     }
@@ -98,27 +98,25 @@ function clickDeleteButton() {
 }
 
 clearDisplay.addEventListener("click", () => {
-   clearDisp();
+    clearDisp();
 });
 
 numberButton.forEach((element) => {
-    buttonContent = element.textContent;
     element.addEventListener("click", () => {
-        clickNumberButton();
+        clickNumberButton(element.textContent);
     })
 });
 
 operators.forEach((element) => {
     element.addEventListener('click', () => {
-        clickOperatorButton();
-        operator = element.textContent;
+        clickOperators(element.textContent)
     })
 });
 
 equal.addEventListener("click", () => {
-    clickEqualButton();
-})
+   clickEqual();
+});
 
 del.addEventListener("click", () => {
-   clickDeleteButton();
+    clickDel();
 });
