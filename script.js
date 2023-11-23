@@ -112,7 +112,7 @@ numberButton.forEach((element) => {
     })
 });
 document.addEventListener("keydown", (e) => {
-    if (Number(e.key) >= 0) {
+    if (Number(e.key) >= 0 || e.key === ".") {
         clickNumberButton(e.key);
     }
 })
