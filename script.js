@@ -46,10 +46,10 @@ function clearDisp() {
 }
 
 function clickNumberButton(buttonContent) {
-    if (display.textContent === result || display.textContent === `${firstNumber}`) {
+    if ((display.textContent === result || display.textContent === `${firstNumber}`) || Number(display.textContent) < 0) {
         display.innerText = buttonContent;
     }
-    else if (buttonContent === "." && display.textContent.indexOf(".") > -1) {
+    else if ((buttonContent === "." && display.textContent.indexOf(".") > -1) ) {
         //do nothing
     }
     else {
@@ -100,23 +100,48 @@ function clickDel() {
 clearDisplay.addEventListener("click", () => {
     clearDisp();
 });
+document.addEventListener("keydown", (e) => {
+    if (e.key === '`') {
+        clearDisp();
+    }
+});
 
 numberButton.forEach((element) => {
     element.addEventListener("click", () => {
         clickNumberButton(element.textContent);
     })
 });
+document.addEventListener("keydown", (e) => {
+    if (Number(e.key) >= 0) {
+        clickNumberButton(e.key);
+    }
+})
 
 operators.forEach((element) => {
     element.addEventListener('click', () => {
         clickOperators(element.textContent)
     })
 });
+document.addEventListener("keydown", (e) => {
+    if (e.key === '+' || e.key === '-' || e.key === "/" || e.key === "*") {
+        clickOperators(e.key);
+    }
+});
 
 equal.addEventListener("click", () => {
    clickEqual();
 });
+document.addEventListener("keydown", (e) => {
+    if (e.key === '=') {
+        clickEqual();
+    }
+});
 
 del.addEventListener("click", () => {
     clickDel();
+});
+document.addEventListener("keydown", (e) => {
+    if (e.key === 'Delete') {
+        clickDel();
+    }
 });
